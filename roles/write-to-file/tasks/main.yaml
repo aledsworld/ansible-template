@@ -1,0 +1,24 @@
+---
+
+- name: Create config Files
+  block:
+    - name: ensure tmp working directory exists
+      file:
+        path: 'tmp/'
+        state: directory
+        mode: 0770
+
+    - name: output text to be written to file - {{ text_1 }}
+      debug:
+        msg: '{{ text_1 }}'
+
+    - name: write to file
+      ansible.builtin.copy:
+        content:  '{{ text_1 }}'
+        dest:  'tmp/test_file.txt'
+
+  always:
+    - name: delete the tmp working directory
+      file:
+        path: tmp/
+        state: absent

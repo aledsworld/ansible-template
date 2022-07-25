@@ -1,0 +1,7 @@
+---
+
+- name: basic playbook examples
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: Write-to-file
